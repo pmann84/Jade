@@ -1,0 +1,12 @@
+string(TOLOWER ${GFXLIB_BUILD} GFXLIB_BUILD_LOWER)
+if(GFXLIB_BUILD_LOWER STREQUAL "opengl")
+    message(STATUS "Setting up gfxlib OPENGL examples.")
+    add_subdirectory(opengl_sandbox)
+elseif(GFXLIB_BUILD_LOWER STREQUAL "vulkan")
+    message(STATUS "Setting up gfxlib VULKAN examples.")
+elseif(GFXLIB_BUILD_LOWER STREQUAL "directx")
+    message(STATUS "Setting up gfxlib DIRECTX examples.")
+else()
+    message(FATAL_ERROR "Incorrect library type given. Must be one of 'opengl', 'vulkan' or 'directx'")
+endif()
+
