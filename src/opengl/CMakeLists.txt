@@ -9,7 +9,9 @@ target_sources(${PROJECT_NAME}
         IndexBuffer.cpp IndexBuffer.hpp
         VertexBuffer.cpp VertexBuffer.hpp
         BufferLayout.cpp BufferLayout.hpp
+        Shader.cpp Shader.hpp
         RenderApi.cpp RenderApi.hpp
+        Renderer.cpp Renderer.hpp
         GraphicsContext.cpp GraphicsContext.hpp
         ShaderCommon.hpp
         Events.hpp)
