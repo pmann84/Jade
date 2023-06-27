@@ -6,5 +6,5 @@ add_library(glad
         ${glad_PATH}/src/glad.c
         )
 
-set(GLAD_INCLUDE_DIRS ${glad_PATH}/include/)
+set(GLAD_INCLUDE_DIRS ${glad_PATH}/include PARENT_SCOPE)
 target_include_directories(glad PUBLIC ${glad_PATH}/include/)

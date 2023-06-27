@@ -14,6 +14,11 @@ namespace gfxlib
         initialise();
     }
 
+    Window::~Window()
+    {
+        shutdown();
+    }
+
     bool Window::shouldClose() const
     {
         return glfwWindowShouldClose(m_window);
@@ -41,51 +46,7 @@ namespace gfxlib
 
         glfwSetWindowUserPointer(m_window, this);
 
-//        glfwSetKeyCallback(m_window, [](GLFWwindow* window, int key, int scancode, int action, int mods) {
-//            application& app = *(application*)glfwGetWindowUserPointer(window);
-//            // TODO: Consider converting this into something more sane?
-//            app.on_key_press(key, scancode, action, mods);
-//        });
-//
-//        glfwSetWindowCloseCallback(m_window, [](GLFWwindow* window){
-//            application& app = *(application*)glfwGetWindowUserPointer(window);
-//            app.on_window_close();
-//        });
-//
-//        glfwSetWindowSizeCallback(m_window, [](GLFWwindow* window, int width, int height){
-//            application& app = *(application*)glfwGetWindowUserPointer(window);
-//            app.m_props.width = width;
-//            app.m_props.height = height;
-//            app.on_window_resize(width, height);
-//        });
-//
-//        glfwSetCharCallback(m_window, [](GLFWwindow* window, unsigned int keycode)
-//        {
-//            application& app = *(application*)glfwGetWindowUserPointer(window);
-//            app.on_char_press(keycode);
-//        });
-//
-//        glfwSetMouseButtonCallback(m_window, [](GLFWwindow* window, int button, int action, int mods)
-//        {
-//            application& app = *(application*)glfwGetWindowUserPointer(window);
-//            app.on_mouse_button(button, action, mods);
-//        });
-//
-//        glfwSetScrollCallback(m_window, [](GLFWwindow* window, double xOffset, double yOffset)
-//        {
-//            application& app = *(application*)glfwGetWindowUserPointer(window);
-//            app.on_scroll(xOffset, yOffset);
-//        });
-//
-//        glfwSetCursorPosCallback(m_window, [](GLFWwindow* window, double xPos, double yPos)
-//        {
-//            application& app = *(application*)glfwGetWindowUserPointer(window);
-//            app.on_cursor_pos_changed(xPos, yPos);
-//        });
-
         glfwMakeContextCurrent(m_window);
-        gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-//        glfwSwapInterval(1);
     }
 
     void Window::shutdown()
@@ -94,10 +55,91 @@ namespace gfxlib
         glfwTerminate();
     }
 
-    void Window::onUpdate() const
+    glm::vec2 Window::getCursorPosition()
     {
-        glfwPollEvents();
-        glfwSwapBuffers(m_window);
+        double xPos, yPos;
+        glfwGetCursorPos(m_window, &xPos, &yPos);
+        return glm::vec2(xPos, yPos);
+    }
+
+    void Window::on(EventCallbackFnT<WindowResizeEvent> callback)
+    {
+        m_windowResizeCallback = callback;
+        glfwSetWindowSizeCallback(m_window, [](GLFWwindow* window, int width, int height){
+            Window& win = *(Window*)glfwGetWindowUserPointer(window);
+            win.m_width = width;
+            win.m_height = height;
+            WindowResizeEvent event { width, height };
+            win.m_windowResizeCallback(event);
+        });
+    }
+
+    void Window::on(EventCallbackFnT<KeyPressedEvent> callback)
+    {
+        m_keyPressedCallback = callback;
+        glfwSetKeyCallback(m_window, [](GLFWwindow* window, int key, int scancode, int action, int mods) {
+            Window& win = *(Window*)glfwGetWindowUserPointer(window);
+            KeyPressedEvent event { key, scancode, action, mods };
+            win.m_keyPressedCallback(event);
+        });
+    }
+
+    void Window::on(EventCallbackFnT<WindowCloseEvent> callback)
+    {
+        m_windowCloseCallback = callback;//
+        glfwSetWindowCloseCallback(m_window, [](GLFWwindow* window){
+            Window& win = *(Window*)glfwGetWindowUserPointer(window);
+            win.m_windowCloseCallback(WindowCloseEvent{});
+        });
+
+    }
+
+    void Window::on(EventCallbackFnT<TextInputEvent> callback)
+    {
+        m_textInputCallback = callback;
+        glfwSetCharCallback(m_window, [](GLFWwindow* window, unsigned int keycode)
+        {
+            Window& win = *(Window*)glfwGetWindowUserPointer(window);
+            TextInputEvent event{ keycode };
+            win.m_textInputCallback(event);
+        });
+    }
+
+    void Window::on(EventCallbackFnT<MouseEvent> callback)
+    {
+        m_mouseCallback = callback;
+        glfwSetMouseButtonCallback(m_window, [](GLFWwindow* window, int button, int action, int mods)
+        {
+            Window& win = *(Window*)glfwGetWindowUserPointer(window);
+            MouseEvent event{button, action, mods};
+            win.m_mouseCallback(event);
+        });
+    }
+
+    void Window::on(EventCallbackFnT<ScrollEvent> callback)
+    {
+        m_scrollCallback = callback;
+        glfwSetScrollCallback(m_window, [](GLFWwindow* window, double xOffset, double yOffset)
+        {
+            Window& win = *(Window*)glfwGetWindowUserPointer(window);
+            ScrollEvent event{xOffset, yOffset};
+            win.m_scrollCallback(event);
+        });
+    }
+
+    void Window::on(EventCallbackFnT<CursorPosChangedEvent> callback)
+    {
+        m_cursorChangedCallback = callback;
+        glfwSetCursorPosCallback(m_window, [](GLFWwindow* window, double xPos, double yPos)
+        {
+            Window& win = *(Window*)glfwGetWindowUserPointer(window);
+            CursorPosChangedEvent event{xPos, yPos};
+            win.m_cursorChangedCallback(event);
+        });
+    }
+
+    GLFWwindow *Window::handle() const
+    {
+        return m_window;
     }
 }
-

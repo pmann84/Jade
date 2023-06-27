@@ -1,7 +1,8 @@
 #pragma once
 
-#include <cstdint>
 #include "BufferLayout.hpp"
+
+#include <cstdint>
 
 namespace gfxlib
 {

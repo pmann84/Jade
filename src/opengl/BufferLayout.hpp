@@ -1,8 +1,9 @@
 #pragma once
 
+#include "ShaderCommon.hpp"
+
 #include <string>
 #include <vector>
-#include "ShaderCommon.hpp"
 
 namespace gfxlib
 {
