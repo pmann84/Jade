@@ -3,6 +3,9 @@ set(PROJECT_NAME gfxlib_${PROJECT_ID})
 
 add_library(${PROJECT_NAME})
 
+add_shader(${PROJECT_NAME} shaders/quad.vert)
+add_shader(${PROJECT_NAME} shaders/quad.frag)
+
 target_sources(${PROJECT_NAME}
         PRIVATE Window.cpp Window.hpp
         VertexArray.cpp VertexArray.hpp
