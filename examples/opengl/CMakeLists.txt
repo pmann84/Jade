@@ -1,2 +1,5 @@
 add_subdirectory(basic_program)
 add_subdirectory(basic_app)
+if(GFXLIB_BUNDLE_RENDERER)
+    add_subdirectory(app_with_renderer)
+endif()
