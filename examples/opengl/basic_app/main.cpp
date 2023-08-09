@@ -20,8 +20,11 @@ public:
 
     void OnUiRender() override
     {
-        bool show_demo_window = true;
-        ImGui::ShowDemoWindow(&show_demo_window);
+        ImGui::Begin("Hardware Info");
+        ImGui::Text("Vendor: %s", m_context.info().vendor.c_str());
+        ImGui::Text("Renderer: %s", m_context.info().renderer.c_str());
+        ImGui::Text("Version: %s", m_context.info().version.c_str());
+        ImGui::End();
     }
 
     void OnWindowResize(const WindowResizeEvent& event) override {
@@ -48,8 +51,7 @@ int main()
     settings.title = "OpenGL Basic App";
 
     auto myApp = std::make_unique<BasicApp>(settings);
-    std::cout << myApp->getInfo() << std::endl;
     myApp->start();
-    
+
     return 0;
 }
