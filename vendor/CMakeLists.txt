@@ -8,3 +8,4 @@ add_subdirectory(glfw)
 set(GLFW_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/glfw/include PARENT_SCOPE)
 
 add_subdirectory(glad)
+set(GLAD_INCLUDE_DIRS ${GLAD_INCLUDE_DIRS} PARENT_SCOPE)

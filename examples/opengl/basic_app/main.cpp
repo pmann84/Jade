@@ -1,12 +1,18 @@
 #include <memory>
 #include "ApplicationBase.hpp"
 
+#define GLFW_INCLUDE_NONE
+#include <GLFW/glfw3.h>
+#include <glad/glad.h>
+
 class BasicApp : public gfxlib::ApplicationBase {
 public:
     explicit BasicApp(gfxlib::WindowSettings settings) : gfxlib::ApplicationBase(settings) {}
 
     void OnUpdate(float ts) override
     {
+        glClearColor(0.8, 0.2, 0.0, 1.0);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     }
 
     void OnUiRender() override
@@ -20,34 +26,6 @@ public:
     void OnKeyPressed(const KeyPressedEvent& event) override {
         std::cout << "Key pressed..." << event.key << std::endl;
     }
-
-//    void OnWindowClose(const WindowCloseEvent &event) override
-//    {
-//        ApplicationBase::OnWindowClose(event);
-//    }
-//
-//    void OnCharPressed(const TextInputEvent&) override
-//    {
-//        ApplicationBase::on_char_press(keycode);
-//    }
-//
-//    void OnMouseButton(const MouseEvent &event) override
-//    {
-//        ApplicationBase::OnMouseButton(event);
-//    }
-//
-//    void OnScroll(const ScrollEvent &event) override
-//    {
-//        ApplicationBase::OnScroll(event);
-//    }
-//
-//    void OnCursorPosChanged(const CursorPosChangedEvent &event) override
-//    {
-//        ApplicationBase::OnCursorPosChanged(event);
-//    }
-
-private:
-
 };
 
 int main()
