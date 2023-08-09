@@ -1,17 +1,11 @@
-if ("window" IN_LIST GFXLIB_COMPONENTS)
-    message(STATUS "Adding OPENGL window library.")
-    add_subdirectory(window)
+message(STATUS "Adding OPENGL window library.")
+add_subdirectory(window)
+
+if (GFXLIB_BUNDLE_RENDERER)
+    message(STATUS "Adding OPENGL rendering library.")
+    add_subdirectory(renderer)
 endif()
 
-#if ("renderer" IN_LIST GFXLIB_COMPONENTS)
-#    message(STATUS "Adding OPENGL rendering library.")
-#    add_subdirectory(renderer)
-#endif()
-
-if ("ui" IN_LIST GFXLIB_COMPONENTS)
-    message(STATUS "Adding OPENGL ui.")
-    add_subdirectory(ui)
-endif()
 
 
 #get_filename_component(PROJECT_ID ${CMAKE_CURRENT_SOURCE_DIR} NAME)

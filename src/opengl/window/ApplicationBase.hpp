@@ -3,6 +3,7 @@
 #include "Window.hpp"
 #include "GraphicsContext.hpp"
 #include "TimeStepper.hpp"
+#include "ImguiContext.hpp"
 
 #include <cstdint>
 #include <string>
@@ -15,6 +16,7 @@ namespace gfxlib {
                 : m_data(settings)
                 , m_window(m_data)
                 , m_context(m_window.handle())
+                , m_uiContext(m_window)
         {
             m_context.initialise();
 
@@ -47,8 +49,17 @@ namespace gfxlib {
                 // Poll for events
                 m_context.pollEvents();
 
+                // Initialise new frame
+                m_uiContext.OnRenderStart();
+
                 // Update client code every frame
                 OnUpdate(m_time_step.get());
+
+                // UI rendering
+                OnUiRender();
+
+                // Finish imgui rendering
+                m_uiContext.OnRenderEnd();
 
                 // Do other bits here
                 m_context.swapBuffers();
@@ -56,10 +67,13 @@ namespace gfxlib {
             }
         }
 
-    private:
+    protected:
         WindowSettings m_data;
         Window m_window;
         GraphicsContext m_context;
+        ImguiContext m_uiContext;
+
+    private:
         TimeStepper m_time_step;
     };
 }

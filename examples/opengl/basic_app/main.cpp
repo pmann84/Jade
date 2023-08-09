@@ -1,9 +1,12 @@
 #include <memory>
 #include "ApplicationBase.hpp"
+#include <imgui.h>
 
-#define GLFW_INCLUDE_NONE
-#include <GLFW/glfw3.h>
 #include <glad/glad.h>
+#include <glm/gtc/type_ptr.hpp>
+#include <sstream>
+
+glm::vec4 DefaultColour = glm::vec4(0.3, 0.7, 0.4, 1.0);
 
 class BasicApp : public gfxlib::ApplicationBase {
 public:
@@ -11,12 +14,14 @@ public:
 
     void OnUpdate(float ts) override
     {
-        glClearColor(0.8, 0.2, 0.0, 1.0);
+        glClearColor(DefaultColour.r, DefaultColour.g, DefaultColour.b, DefaultColour.a);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     }
 
     void OnUiRender() override
     {
+        bool show_demo_window = true;
+        ImGui::ShowDemoWindow(&show_demo_window);
     }
 
     void OnWindowResize(const WindowResizeEvent& event) override {
@@ -25,6 +30,13 @@ public:
 
     void OnKeyPressed(const KeyPressedEvent& event) override {
         std::cout << "Key pressed..." << event.key << std::endl;
+    }
+
+    std::string getInfo() {
+        auto ctxInfo = m_context.info();
+        std::stringstream ss;
+        ss << "Vendor: " << ctxInfo.vendor << std::endl << "Renderer: " << ctxInfo.renderer << std::endl << "Version: " << ctxInfo.version << std::endl;
+        return ss.str();
     }
 };
 
@@ -36,29 +48,8 @@ int main()
     settings.title = "OpenGL Basic App";
 
     auto myApp = std::make_unique<BasicApp>(settings);
+    std::cout << myApp->getInfo() << std::endl;
     myApp->start();
-
-//    auto ctxInfo = ctx.info();
-//    std::cout << "Vendor: " << ctxInfo.vendor << std::endl << "Renderer: " << ctxInfo.renderer << std::endl << "Version: " << ctxInfo.version << std::endl;
-//
-//    // Subscribe to some events
-//    window.on([](WindowResizeEvent event){
-//        std::cout << "Window resize called: " << event.width << " x " << event.height << std::endl;
-//    });
-//    window.on([](KeyPressedEvent event) {
-//        std::cout << "Key pressed..." << event.key << std::endl;
-//    });
-//
-//    // Initialise a render API
-////    auto api = gfxlib::RenderApi();
-////    api.initialise();
-////    api.setClearColor({50 / 128.0, 168 / 128.0, 82 / 128.0, 1.0});
-//
-//    while(!window.shouldClose())
-//    {
-////        api.clear();
-//        ctx.pollEvents();
-//        ctx.swapBuffers();
-//    }
+    
     return 0;
 }
