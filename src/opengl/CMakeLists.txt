@@ -1,35 +1,52 @@
-get_filename_component(PROJECT_ID ${CMAKE_CURRENT_SOURCE_DIR} NAME)
-set(PROJECT_NAME gfxlib_${PROJECT_ID})
+if ("window" IN_LIST GFXLIB_COMPONENTS)
+    message(STATUS "Adding OPENGL window library.")
+    add_subdirectory(window)
+endif()
 
-add_library(${PROJECT_NAME})
+#if ("renderer" IN_LIST GFXLIB_COMPONENTS)
+#    message(STATUS "Adding OPENGL rendering library.")
+#    add_subdirectory(renderer)
+#endif()
 
-add_shader(${PROJECT_NAME} shaders/quad.vert)
-add_shader(${PROJECT_NAME} shaders/quad.frag)
+if ("ui" IN_LIST GFXLIB_COMPONENTS)
+    message(STATUS "Adding OPENGL ui.")
+    add_subdirectory(ui)
+endif()
 
-target_sources(${PROJECT_NAME}
-        PRIVATE Window.cpp Window.hpp
-        VertexArray.cpp VertexArray.hpp
-        IndexBuffer.cpp IndexBuffer.hpp
-        VertexBuffer.cpp VertexBuffer.hpp
-        BufferLayout.cpp BufferLayout.hpp
-        Shader.cpp Shader.hpp
-        RenderApi.cpp RenderApi.hpp
-        Renderer.cpp Renderer.hpp
-        GraphicsContext.cpp GraphicsContext.hpp
-        ShaderCommon.hpp
-        Events.hpp)
 
-target_link_libraries(${PROJECT_NAME}
-        PRIVATE glad
-        PRIVATE glm
-        PRIVATE glfw)
-
-# Exports all the include directories needed for this library
-target_include_directories(${PROJECT_NAME}
-        PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
-        PUBLIC ${GLAD_INCLUDE_DIRS}
-        PUBLIC ${GLM_INCLUDE_DIRS}
-        PUBLIC ${GLFW_INCLUDE_DIRS})
+#get_filename_component(PROJECT_ID ${CMAKE_CURRENT_SOURCE_DIR} NAME)
+#set(PROJECT_NAME gfxlib_${PROJECT_ID})
+#
+#add_library(${PROJECT_NAME})
+#
+#add_shader(${PROJECT_NAME} shaders/quad.vert)
+#add_shader(${PROJECT_NAME} shaders/quad.frag)
+#
+#target_sources(${PROJECT_NAME}
+#        PRIVATE window/Window.cpp window/Window.hpp
+#        rendering/VertexArray.cpp rendering/VertexArray.hpp
+#        rendering/IndexBuffer.cpp rendering/IndexBuffer.hpp
+#        rendering/VertexBuffer.cpp rendering/VertexBuffer.hpp
+#        rendering/BufferLayout.cpp rendering/BufferLayout.hpp
+#        rendering/Shader.cpp rendering/Shader.hpp
+#        rendering/RenderApi.cpp rendering/RenderApi.hpp
+#        rendering/Renderer.cpp rendering/Renderer.hpp
+#        rendering/GraphicsContext.cpp rendering/GraphicsContext.hpp
+#        rendering/Camera.cpp rendering/Camera.hpp
+#        rendering/ShaderCommon.hpp
+#        rendering/Events.hpp)
+#
+#target_link_libraries(${PROJECT_NAME}
+#        PRIVATE glad
+#        PRIVATE glm
+#        PRIVATE glfw)
+#
+## Exports all the include directories needed for this library
+#target_include_directories(${PROJECT_NAME}
+#        PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
+#        PUBLIC ${GLAD_INCLUDE_DIRS}
+#        PUBLIC ${GLM_INCLUDE_DIRS}
+#        PUBLIC ${GLFW_INCLUDE_DIRS})
 
 #target_sources(${FRAMEWORK_PROJECT_NAME}
 #        PRIVATE application.cpp image.cpp

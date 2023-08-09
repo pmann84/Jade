@@ -1,6 +1,6 @@
 #include "GraphicsContext.hpp"
 
-#include <glad/glad.h>
+#include "glad/glad.h"
 
 #include <iostream>
 

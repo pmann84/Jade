@@ -59,3 +59,5 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
     # Link directory for vulkan-1
     link_directories(${VULKAN_PATH}/Bin;${VULKAN_PATH}/Lib;)
 endif()
+
+set(GLSLC_PATH ${VULKAN_PATH}/Bin)

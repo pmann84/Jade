@@ -3,8 +3,8 @@
 #include "Events.hpp"
 
 #define GLFW_INCLUDE_NONE
-#include <GLFW/glfw3.h>
-#include <glm/glm.hpp>
+#include "GLFW/glfw3.h"
+#include "glm/glm.hpp"
 
 #include <string>
 #include <functional>

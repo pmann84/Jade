@@ -1,6 +1,6 @@
-#include <Window.hpp>
-#include <Events.hpp>
-#include <RenderApi.hpp>
+#include "Window.hpp"
+#include "Events.hpp"
+//#include "RenderApi.hpp"
 
 #include <iostream>
 #include "GraphicsContext.hpp"
@@ -28,13 +28,13 @@ int main()
     });
 
     // Initialise a render API
-    auto api = gfxlib::RenderApi();
-    api.initialise();
-    api.setClearColor({50 / 128.0, 168 / 128.0, 82 / 128.0, 1.0});
+//    auto api = gfxlib::RenderApi();
+//    api.initialise();
+//    api.setClearColor({50 / 128.0, 168 / 128.0, 82 / 128.0, 1.0});
 
     while(!window.shouldClose())
     {
-        api.clear();
+//        api.clear();
         ctx.pollEvents();
         ctx.swapBuffers();
     }

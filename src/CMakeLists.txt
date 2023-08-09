@@ -1,4 +1,4 @@
-string(TOLOWER ${GFXLIB_BUILD} GFXLIB_BUILD_LOWER)
+string(TOLOWER ${GFXLIB_BACKEND} GFXLIB_BUILD_LOWER)
 if(GFXLIB_BUILD_LOWER STREQUAL "opengl")
     message(STATUS "Setting up gfxlib using OPENGL.")
     add_subdirectory(opengl)

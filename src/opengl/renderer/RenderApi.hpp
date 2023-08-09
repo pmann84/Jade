@@ -2,7 +2,7 @@
 
 #include "VertexArray.hpp"
 
-#include <glm/glm.hpp>
+#include "glm/glm.hpp"
 
 #include <cstdint>
 #include <memory>

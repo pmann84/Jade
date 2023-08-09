@@ -12,6 +12,18 @@ Currently, the aim is to try to get to the 3 main apis:
 
 In reality the first one will be OpenGL and then Vulkan and finally DirectX but the development of these may overlap somewhat.
 
+# Pre-requisites
+This project uses the following 3rd party libraries and frameworks
+- CMake
+- Vulkan SDK
+- GLAD
+- GLFW
+- GLM
+
+The only things that you should have to download specifically for this are:
+- CMake
+- Vulkan SDK
+
 # Building the Libraries
 
 

@@ -1,0 +1,2 @@
+add_subdirectory(basic_program)
+add_subdirectory(basic_app)
