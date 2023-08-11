@@ -26,8 +26,8 @@ namespace gfxlib
         (void) io;
         io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
         io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
-//      io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;     // Enable Docking
-//      io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
+        io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;         // Enable Docking
+        io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;       // Enable viewports
 
         // Setup Dear ImGui style
         ImGui::StyleColorsDark();
@@ -55,6 +55,8 @@ namespace gfxlib
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
+        // The docking flag here makes the main dockspace transparent
+        ImGui::DockSpaceOverViewport(ImGui::GetMainViewport(), ImGuiDockNodeFlags_PassthruCentralNode);
     }
 
     void ImguiContext::OnRenderEnd()
@@ -62,13 +64,13 @@ namespace gfxlib
         ImGui::Render();
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
-        // Update and Render additional Platform Windows
-//    ImGuiIO &io = ImGui::GetIO();
-//    if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable) {
-//        GLFWwindow* backup_current_context = glfwGetCurrentContext();
-//        ImGui::UpdatePlatformWindows();
-//        ImGui::RenderPlatformWindowsDefault();
-//        glfwMakeContextCurrent(backup_current_context);
-//    }
+        // Update and Render additional Platform Windows (for Docking)
+        ImGuiIO &io = ImGui::GetIO();
+        if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable) {
+            GLFWwindow* backup_current_context = glfwGetCurrentContext();
+            ImGui::UpdatePlatformWindows();
+            ImGui::RenderPlatformWindowsDefault();
+            glfwMakeContextCurrent(backup_current_context);
+        }
     }
 }
