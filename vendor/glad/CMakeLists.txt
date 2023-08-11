@@ -1,4 +1,4 @@
-set(glad_PATH ${CMAKE_SOURCE_DIR}/vendor/glad)
+set(glad_PATH ${CMAKE_CURRENT_SOURCE_DIR})
 add_library(glad
         ${glad_PATH}/include/glad/glad.h
         ${glad_PATH}/include/KHR/khrplatform.h

@@ -1,4 +1,4 @@
-set(imgui_PATH ${CMAKE_SOURCE_DIR}/vendor/imgui)
+set(imgui_PATH ${CMAKE_CURRENT_SOURCE_DIR}/vendor/imgui)
 
 add_library(imgui
     ${imgui_PATH}/imconfig.h
