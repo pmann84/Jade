@@ -1,3 +1,5 @@
+add_subdirectory(common)
+
 string(TOLOWER ${GFXLIB_BACKEND} GFXLIB_BUILD_LOWER)
 if(GFXLIB_BUILD_LOWER STREQUAL "opengl")
     message(STATUS "Setting up gfxlib using OPENGL.")

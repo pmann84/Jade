@@ -8,7 +8,7 @@
 
 namespace gfxlib
 {
-    Shader::Shader(const std::filesystem::path &vertexShader, std::filesystem::path &fragmentShader)
+    Shader::Shader(const std::filesystem::path &vertexShader, const std::filesystem::path &fragmentShader)
             : m_vertexPath(vertexShader), m_fragmentPath(fragmentShader)
     {
         m_vertexBinarySrc = loadShader(vertexShader);
@@ -35,7 +35,7 @@ namespace gfxlib
         }
         else
         {
-            std::cerr << "Could not open \"" << shader << "\"" << std::endl;
+            std::cerr << "Could not open " << shader << std::endl;
             return std::vector<char>();
         }
     }

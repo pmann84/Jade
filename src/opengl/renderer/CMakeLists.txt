@@ -9,10 +9,12 @@ add_shader(${PROJECT_NAME} shaders/quad.frag)
 target_sources(${PROJECT_NAME}
         PRIVATE VertexArray.cpp VertexArray.hpp
         IndexBuffer.cpp IndexBuffer.hpp
+        VertexBuffer.cpp VertexBuffer.hpp
         BufferLayout.cpp BufferLayout.hpp
         Shader.cpp Shader.hpp
         RenderApi.cpp RenderApi.hpp
         Renderer.cpp Renderer.hpp
+        RendererStatistics.hpp
         Camera.cpp Camera.hpp
         ShaderCommon.hpp)
 
@@ -27,3 +29,4 @@ target_include_directories(${PROJECT_NAME}
         PUBLIC ${GLAD_INCLUDE_DIRS}
         PUBLIC ${GLM_INCLUDE_DIRS}
         PUBLIC ${GLFW_INCLUDE_DIRS})
+

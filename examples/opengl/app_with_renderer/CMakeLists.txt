@@ -6,3 +6,5 @@ add_executable(${PROJECT_NAME} main.cpp)
 target_link_libraries(${PROJECT_NAME}
         PRIVATE gfxlib_opengl_window
         PRIVATE gfxlib_opengl_renderer)
+
+copy_shaders(${PROJECT_NAME})

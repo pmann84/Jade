@@ -7,13 +7,14 @@
 
 #include <cstdint>
 #include <string>
+#include <utility>
 
 namespace gfxlib {
     class ApplicationBase
     {
     public:
         explicit ApplicationBase(WindowSettings settings)
-                : m_data(settings)
+                : m_data(std::move(settings))
                 , m_window(m_data)
                 , m_context(m_window.handle())
                 , m_uiContext(m_window)
@@ -28,20 +29,20 @@ namespace gfxlib {
             });
         }
 
-        ~ApplicationBase() {
-        }
+        ~ApplicationBase() = default;
 
         virtual void OnUpdate(float ts) = 0;
         virtual void OnUiRender() = 0;
 
         //    virtual void on_error(int error, const char* description) = 0;
         virtual void OnKeyPressed(const KeyPressedEvent&) {}
-        virtual void OnWindowClose(const WindowCloseEvent&) {}
-        virtual void OnWindowResize(const WindowResizeEvent&) {}
-        virtual void OnCharPressed(const TextInputEvent&) {}
-        virtual void OnMouseButton(const MouseEvent&) {}
-        virtual void OnScroll(const ScrollEvent&) {}
-        virtual void OnCursorPosChanged(const CursorPosChangedEvent&) {}
+
+        [[maybe_unused]] virtual void OnWindowClose(const WindowCloseEvent&) {}
+        [[maybe_unused]] virtual void OnWindowResize(const WindowResizeEvent&) {}
+        [[maybe_unused]] virtual void OnCharPressed(const TextInputEvent&) {}
+        [[maybe_unused]] virtual void OnMouseButton(const MouseEvent&) {}
+        [[maybe_unused]] virtual void OnScroll(const ScrollEvent&) {}
+        [[maybe_unused]] virtual void OnCursorPosChanged(const CursorPosChangedEvent&) {}
 
         void start() {
             while(!m_window.shouldClose())

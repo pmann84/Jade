@@ -11,6 +11,7 @@ target_sources(${PROJECT_NAME}
         ApplicationBase.hpp
         TimeStepper.hpp
         ImguiContext.hpp ImguiContext.cpp
+        Image.hpp Image.cpp
         ./bindings/imgui_impl_glfw.cpp
         ./bindings/imgui_impl_opengl3.cpp
         ./bindings/imgui_impl_glfw.h

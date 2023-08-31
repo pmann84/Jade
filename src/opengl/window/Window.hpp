@@ -3,8 +3,8 @@
 #include "Events.hpp"
 
 #define GLFW_INCLUDE_NONE
-#include "GLFW/glfw3.h"
-#include "glm/glm.hpp"
+#include <GLFW/glfw3.h>
+#include <glm/glm.hpp>
 
 #include <string>
 #include <functional>
@@ -25,14 +25,13 @@ namespace gfxlib
     class Window
     {
     public:
-        Window(WindowSettings settings);
+        explicit Window(const WindowSettings& settings);
         ~Window();
 
-        void onUpdate() const;
-        bool shouldClose() const;
-        GLFWwindow* handle() const;
+        [[nodiscard]] bool shouldClose() const;
+        [[nodiscard]] GLFWwindow* handle() const;
 
-        glm::vec2 getCursorPosition();
+        [[maybe_unused]] glm::vec2 getCursorPosition();
 
         // TODO: Add macro that adds the function and the member
         void on(EventCallbackFnT<WindowResizeEvent> callback);

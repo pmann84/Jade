@@ -7,14 +7,14 @@
 class TimeStepper
 {
 public:
-    float get()
+    [[nodiscard]] float get() const
     {
         return m_time_step;
     }
 
     void update()
     {
-        float time = (float)glfwGetTime();
+        auto time = (float)glfwGetTime();
         m_frame_time = time - m_last_frame_time;
         m_time_step = glm::min<float>(m_frame_time, 0.0333f);
         m_last_frame_time = time;

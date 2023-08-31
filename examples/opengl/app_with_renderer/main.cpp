@@ -1,6 +1,6 @@
 #include <memory>
 #include "ApplicationBase.hpp"
-#include "RenderApi.hpp"
+#include <Renderer.hpp>
 #include <imgui.h>
 
 #include <glad/glad.h>
@@ -12,13 +12,20 @@ glm::vec4 DefaultColour = glm::vec4(0.3, 0.7, 0.4, 1.0);
 class BasicApp : public gfxlib::ApplicationBase {
 public:
     explicit BasicApp(gfxlib::WindowSettings settings) : gfxlib::ApplicationBase(settings) {
-        m_api.initialise();
-        m_api.setClearColor(DefaultColour);
+        gfxlib::RenderApi::initialise();
+        gfxlib::RenderApi::setClearColor(DefaultColour);
     }
 
     void OnUpdate(float ts) override
     {
-        m_api.clear();
+        gfxlib::RenderApi::clear();
+
+        m_renderer.DrawQuad(
+            glm::vec3(0.0, 0.0, 0.0),
+            glm::vec2(1.0, 1.0),
+            glm::vec4(0.0, 1.0, 0.0, 1.0)
+        );
+
     }
 
     void OnUiRender() override
@@ -46,7 +53,7 @@ public:
     }
 
 private:
-    gfxlib::RenderApi m_api;
+    gfxlib::Renderer m_renderer;
 };
 
 int main()
@@ -55,7 +62,7 @@ int main()
     settings.width = 800;
     settings.height = 600;
     settings.title = "OpenGL Basic App";
-
+// hello
     auto myApp = std::make_unique<BasicApp>(settings);
     myApp->start();
 

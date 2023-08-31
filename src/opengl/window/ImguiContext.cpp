@@ -55,7 +55,7 @@ namespace gfxlib
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
-        // The docking flag here makes the main dockspace transparent
+        // The docking flag here makes the main dock space transparent
         ImGui::DockSpaceOverViewport(ImGui::GetMainViewport(), ImGuiDockNodeFlags_PassthruCentralNode);
     }
 

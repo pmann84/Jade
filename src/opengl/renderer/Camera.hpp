@@ -10,7 +10,7 @@ namespace gfxlib
         Camera() = default;
         Camera(float fov, float aspectRatio, float nearClip, float farClip);
 
-        const glm::mat4 &projection() const;
+        const glm::mat4& projection() const;
 
     protected:
         float m_fov = 45.0f;

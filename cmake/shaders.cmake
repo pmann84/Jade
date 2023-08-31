@@ -1,3 +1,22 @@
+function(copy_shaders TARGET)
+    message("Copying shaders to ${TARGET}")
+    #file(GENERATE OUTPUT filename CONTENT "$<TARGET_FILE_DIR:${TARGET}>")
+    # Gather list of all .spv files in the output directory of the renderer
+    # file(GLOB shaderFiles $<TARGET_FILE_DIR:gfxlib_opengl_renderer>/shaders/*.spv)
+    # TODO: Ideally we wouldnt need to specify this manually we'd use the glob above
+    # but i cant get it work just yet XD
+    set(shaderFiles quad.frag.spv quad.vert.spv)
+
+    message("Found shaders: ${shaderFiles}")
+
+    foreach(SHADER ${shaderFiles})
+        message("Adding custom command for shader ${SHADER}")
+        add_custom_command(TARGET ${TARGET} POST_BUILD
+                COMMAND ${CMAKE_COMMAND} -E
+                copy $<TARGET_FILE_DIR:gfxlib_opengl_renderer>/shaders/${SHADER} $<TARGET_FILE_DIR:${TARGET}>/shaders/${SHADER})
+    endforeach()
+endfunction(copy_shaders)
+
 function(add_shader TARGET SHADER)
     if (${GLSLC_PATH} STREQUAL "")
         message(FATAL_ERROR "GLSLC_PATH is not set. This needs to be defined to compile shaders.")

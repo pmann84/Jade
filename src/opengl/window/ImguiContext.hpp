@@ -7,7 +7,7 @@ namespace gfxlib
     class ImguiContext
     {
     public:
-        ImguiContext(Window& window);
+        explicit ImguiContext(Window& window);
         ~ImguiContext();
 
         void Initialise();

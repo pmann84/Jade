@@ -1,7 +1,5 @@
 #include "Window.hpp"
 
-#include "glad/glad.h"
-
 namespace gfxlib
 {
     static void error_callback(int error, const char* description)
@@ -9,7 +7,7 @@ namespace gfxlib
 //        logging::error("GLFW Error ({0}): {1}", error, description);
     }
 
-    Window::Window(WindowSettings settings): m_width(settings.width), m_height(settings.height), m_title(settings.title)
+    Window::Window(const WindowSettings& settings): m_width(settings.width), m_height(settings.height), m_title(settings.title)
     {
         initialise();
     }
@@ -55,11 +53,11 @@ namespace gfxlib
         glfwTerminate();
     }
 
-    glm::vec2 Window::getCursorPosition()
+    [[maybe_unused]] glm::vec2 Window::getCursorPosition()
     {
         double xPos, yPos;
         glfwGetCursorPos(m_window, &xPos, &yPos);
-        return glm::vec2(xPos, yPos);
+        return {xPos, yPos};
     }
 
     void Window::on(EventCallbackFnT<WindowResizeEvent> callback)
