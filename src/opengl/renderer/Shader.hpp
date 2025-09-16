@@ -5,7 +5,7 @@
 #include <cstdint>
 #include <filesystem>
 
-namespace gfxlib
+namespace jade
 {
     class Shader
     {

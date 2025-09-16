@@ -6,7 +6,7 @@
 
 #include <iostream>
 
-namespace gfxlib
+namespace jade
 {
     static GLenum ShaderDataTypeToOpenGLBaseType(ShaderDataType type)
     {
@@ -26,27 +26,27 @@ namespace gfxlib
         return 0;
     }
 
-    gfxlib::VertexArray::VertexArray()
+    jade::VertexArray::VertexArray()
     {
         glCreateVertexArrays(1, &m_id);
     }
 
-    gfxlib::VertexArray::~VertexArray()
+    jade::VertexArray::~VertexArray()
     {
         glDeleteVertexArrays(1, &m_id);
     }
 
-    void gfxlib::VertexArray::bind() const
+    void jade::VertexArray::bind() const
     {
         glBindVertexArray(m_id);
     }
 
-    void gfxlib::VertexArray::unbind() const
+    void jade::VertexArray::unbind() const
     {
         glBindVertexArray(0);
     }
 
-    void gfxlib::VertexArray::addVertexBuffer(const std::shared_ptr<gfxlib::VertexBuffer>& buffer)
+    void jade::VertexArray::addVertexBuffer(const std::shared_ptr<jade::VertexBuffer>& buffer)
     {
         if (buffer->layout().elements().size() == 0)
         {
@@ -117,7 +117,7 @@ namespace gfxlib
         m_vertexBuffers.push_back(buffer);
     }
 
-    void gfxlib::VertexArray::setIndexBuffer(const std::shared_ptr<gfxlib::IndexBuffer> &buffer)
+    void jade::VertexArray::setIndexBuffer(const std::shared_ptr<jade::IndexBuffer> &buffer)
     {
         glBindVertexArray(m_id);
         buffer->bind();
@@ -125,12 +125,12 @@ namespace gfxlib
         m_indexBuffer = buffer;
     }
 
-    const std::vector<std::shared_ptr<gfxlib::VertexBuffer>> &gfxlib::VertexArray::vertexBuffers() const
+    const std::vector<std::shared_ptr<jade::VertexBuffer>> &jade::VertexArray::vertexBuffers() const
     {
         return m_vertexBuffers;
     }
 
-    const std::shared_ptr<gfxlib::IndexBuffer> &gfxlib::VertexArray::indexBuffer() const
+    const std::shared_ptr<jade::IndexBuffer> &jade::VertexArray::indexBuffer() const
     {
         return m_indexBuffer;
     }

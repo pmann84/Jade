@@ -10,7 +10,7 @@
 #include <functional>
 #include <iostream>
 
-namespace gfxlib
+namespace jade
 {
     template<typename EventT>
     using EventCallbackFnT = std::function<void(EventT)>;

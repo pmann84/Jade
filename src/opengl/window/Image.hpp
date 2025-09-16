@@ -5,7 +5,7 @@
 #include <cstdint>
 #include <vector>
 
-namespace gfxlib {
+namespace jade {
     class Image
     {
     public:

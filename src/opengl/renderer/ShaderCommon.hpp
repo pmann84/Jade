@@ -2,7 +2,7 @@
 
 #include <cstdint>
 
-namespace gfxlib
+namespace jade
 {
     enum class ShaderDataType
     {

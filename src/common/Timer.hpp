@@ -2,7 +2,7 @@
 
 #include <chrono>
 
-namespace gfxlib
+namespace jade
 {
     class Timer
     {

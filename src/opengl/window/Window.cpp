@@ -1,6 +1,6 @@
 #include "Window.hpp"
 
-namespace gfxlib
+namespace jade
 {
     static void error_callback(int error, const char* description)
     {

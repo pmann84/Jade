@@ -9,7 +9,7 @@
 #include <string>
 #include <utility>
 
-namespace gfxlib {
+namespace jade {
     class ApplicationBase
     {
     public:

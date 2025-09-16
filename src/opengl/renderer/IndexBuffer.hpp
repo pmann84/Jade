@@ -2,7 +2,7 @@
 
 #include <cstdint>
 
-namespace gfxlib
+namespace jade
 {
     class IndexBuffer
     {

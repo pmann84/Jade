@@ -2,7 +2,7 @@
 
 #include "glad/glad.h"
 
-namespace gfxlib {
+namespace jade {
     Image::Image(uint32_t width, uint32_t height, GLenum format) : m_width(width), m_height(height), m_data_format(format), m_texture_id(0)
     {
         glCreateTextures(GL_TEXTURE_2D, 1, &m_texture_id);

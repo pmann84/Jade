@@ -1,6 +1,6 @@
 #include "BufferLayout.hpp"
 
-namespace gfxlib
+namespace jade
 {
     BufferLayout::BufferLayout(std::initializer_list<BufferElement> elements) : m_elements(elements)
     {

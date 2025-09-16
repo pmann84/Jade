@@ -4,7 +4,7 @@
 #include "./bindings/imgui_impl_glfw.h"
 #include "./bindings/imgui_impl_opengl3.h"
 
-namespace gfxlib
+namespace jade
 {
     ImguiContext::ImguiContext(Window& window): m_window(window)
     {

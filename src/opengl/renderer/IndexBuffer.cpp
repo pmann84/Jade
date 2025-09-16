@@ -2,7 +2,7 @@
 
 #include "glad/glad.h"
 
-namespace gfxlib
+namespace jade
 {
     IndexBuffer::IndexBuffer(uint32_t *indices, uint32_t count): m_count(count)
     {

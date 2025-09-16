@@ -93,14 +93,14 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hInstPrev, PSTR cmdline, int cmdsh
 
     return (int) msg.wParam;
 
-//    gfxlib::WindowSettings settings;
+//    jade::WindowSettings settings;
 //    settings.width = 800;
 //    settings.height = 600;
 //    settings.title = "OpenGL Sandbox";
-//    gfxlib::Window window = gfxlib::Window(settings);
+//    jade::Window window = jade::Window(settings);
 
     // Graphics context
-//    gfxlib::GraphicsContext ctx(window.handle());
+//    jade::GraphicsContext ctx(window.handle());
 //    ctx.initialise();
 //    auto ctxInfo = ctx.info();
 //    std::cout << "Vendor: " << ctxInfo.vendor << std::endl << "Renderer: " << ctxInfo.renderer << std::endl << "Version: " << ctxInfo.version << std::endl;

@@ -2,7 +2,7 @@
 
 #include "glm/glm.hpp"
 
-namespace gfxlib
+namespace jade
 {
     class Camera
     {

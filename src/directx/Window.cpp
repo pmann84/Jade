@@ -5,7 +5,7 @@
 #include <iostream>
 #include <functional>
 
-namespace gfxlib
+namespace jade
 {
     Window::Window(HINSTANCE hInst, int cmdShow, WindowSettings settings): m_title(settings.title), m_width(settings.width), m_height(settings.height)
     {
@@ -171,14 +171,14 @@ namespace gfxlib
 //
 //    return (int) msg.wParam;
 //
-////    gfxlib::WindowSettings settings;
+////    jade::WindowSettings settings;
 ////    settings.width = 800;
 ////    settings.height = 600;
 ////    settings.title = "OpenGL Sandbox";
-////    gfxlib::Window window = gfxlib::Window(settings);
+////    jade::Window window = jade::Window(settings);
 //
 //    // Graphics context
-////    gfxlib::GraphicsContext ctx(window.handle());
+////    jade::GraphicsContext ctx(window.handle());
 ////    ctx.initialise();
 ////    auto ctxInfo = ctx.info();
 ////    std::cout << "Vendor: " << ctxInfo.vendor << std::endl << "Renderer: " << ctxInfo.renderer << std::endl << "Version: " << ctxInfo.version << std::endl;

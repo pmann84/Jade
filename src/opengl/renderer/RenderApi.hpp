@@ -7,7 +7,7 @@
 #include <cstdint>
 #include <memory>
 
-namespace gfxlib
+namespace jade
 {
     class RenderApi
     {

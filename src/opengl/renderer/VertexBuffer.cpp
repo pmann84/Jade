@@ -1,7 +1,7 @@
 #include "VertexBuffer.hpp"
 #include "glad/glad.h"
 
-namespace gfxlib
+namespace jade
 {
     VertexBuffer::VertexBuffer(uint32_t size)
     {

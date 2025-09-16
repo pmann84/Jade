@@ -4,7 +4,7 @@
 
 #include <string>
 
-namespace gfxlib
+namespace jade
 {
     struct WindowSettings
     {

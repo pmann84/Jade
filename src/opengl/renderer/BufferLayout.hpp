@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 
-namespace gfxlib
+namespace jade
 {
     struct BufferElement
     {

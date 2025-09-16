@@ -5,7 +5,7 @@
 
 #include <memory>
 
-namespace gfxlib
+namespace jade
 {
     class VertexArray
     {

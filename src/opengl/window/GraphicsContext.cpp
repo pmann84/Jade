@@ -4,7 +4,7 @@
 
 #include <iostream>
 
-namespace gfxlib
+namespace jade
 {
     GraphicsContext::GraphicsContext(GLFWwindow *window) : m_window(window)
     {

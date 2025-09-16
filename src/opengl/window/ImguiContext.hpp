@@ -2,7 +2,7 @@
 
 #include "Window.hpp"
 
-namespace gfxlib
+namespace jade
 {
     class ImguiContext
     {

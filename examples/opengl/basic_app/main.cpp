@@ -8,9 +8,9 @@
 
 glm::vec4 DefaultColour = glm::vec4(0.3, 0.7, 0.4, 1.0);
 
-class BasicApp : public gfxlib::ApplicationBase {
+class BasicApp : public jade::ApplicationBase {
 public:
-    explicit BasicApp(gfxlib::WindowSettings settings) : gfxlib::ApplicationBase(settings) {}
+    explicit BasicApp(jade::WindowSettings settings) : jade::ApplicationBase(settings) {}
 
     void OnUpdate(float ts) override
     {
@@ -45,7 +45,7 @@ public:
 
 int main()
 {
-    gfxlib::WindowSettings settings;
+    jade::WindowSettings settings;
     settings.width = 800;
     settings.height = 600;
     settings.title = "OpenGL Basic App";

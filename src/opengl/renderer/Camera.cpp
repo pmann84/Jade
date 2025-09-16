@@ -1,6 +1,6 @@
 #include "Camera.hpp"
 
-namespace gfxlib
+namespace jade
 {
 
 }

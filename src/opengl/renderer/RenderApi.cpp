@@ -3,7 +3,7 @@
 #include "glad/glad.h"
 #include <iostream>
 
-namespace gfxlib
+namespace jade
 {
     void RenderApi::initialise()
     {

@@ -6,7 +6,7 @@
 #include <fstream>
 #include <iostream>
 
-namespace gfxlib
+namespace jade
 {
     Shader::Shader(const std::filesystem::path &vertexShader, const std::filesystem::path &fragmentShader)
             : m_vertexPath(vertexShader), m_fragmentPath(fragmentShader)

@@ -4,7 +4,7 @@
 #include "RenderApi.hpp"
 #include <glm/glm.hpp>
 
-namespace gfxlib
+namespace jade
 {
     struct RendererData
     {

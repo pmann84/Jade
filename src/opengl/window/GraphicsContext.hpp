@@ -5,7 +5,7 @@
 
 #include <string>
 
-namespace gfxlib
+namespace jade
 {
     struct ContextInfo
     {
