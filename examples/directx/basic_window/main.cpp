@@ -1,8 +1,8 @@
-#include "window/Window.hpp"
+// #include "window/Window.hpp"
 
 #include <windows.h>
 #include <tchar.h>
-
+#include <d3d11.h>
 #include <iostream>
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
@@ -13,19 +13,20 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
     switch (message)
     {
-//        case WM_PAINT:
-//            hdc = BeginPaint(hWnd, &ps);
-//
-//            // Here your application is laid out.
-//            // For this introduction, we just print out "Hello, Windows desktop!"
-//            // in the top left corner.
-//            TextOut(hdc,
-//                    5, 5,
-//                    greeting, _tcslen(greeting));
-//            // End application specific layout section.
-//
-//            EndPaint(hWnd, &ps);
-//            break;
+        case WM_PAINT:
+            hdc = BeginPaint(hWnd, &ps);
+
+            ID3D11DeviceContext::ClearRenderTargetView();
+            // Here your application is laid out.
+            // For this introduction, we just print out "Hello, Windows desktop!"
+            // in the top left corner.
+            TextOut(hdc,
+                    5, 5,
+                    greeting, _tcslen(greeting));
+            // End application specific layout section.
+
+            EndPaint(hWnd, &ps);
+            break;
         case WM_DESTROY:
             PostQuitMessage(0);
             break;
@@ -68,7 +69,7 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hInstPrev, PSTR cmdline, int cmdsh
             szTitle,
             WS_OVERLAPPEDWINDOW,
             CW_USEDEFAULT, CW_USEDEFAULT,
-            500, 100,
+            800, 600,
             NULL,
             NULL,
             hInst,
@@ -92,6 +93,7 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hInstPrev, PSTR cmdline, int cmdsh
     }
 
     return (int) msg.wParam;
+}
 
 //    jade::WindowSettings settings;
 //    settings.width = 800;
@@ -99,7 +101,7 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hInstPrev, PSTR cmdline, int cmdsh
 //    settings.title = "OpenGL Sandbox";
 //    jade::Window window = jade::Window(settings);
 
-    // Graphics context
+// Graphics context
 //    jade::GraphicsContext ctx(window.handle());
 //    ctx.initialise();
 //    auto ctxInfo = ctx.info();
@@ -119,4 +121,3 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hInstPrev, PSTR cmdline, int cmdsh
 //        ctx.swapBuffers();
 //    }
 //    return 0;
-}
