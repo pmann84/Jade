@@ -1,13 +1,13 @@
 #pragma once
 
-#include "Window.hpp"
+#include "old_Window.hpp"
 
 namespace jade
 {
     class ImguiContext
     {
     public:
-        explicit ImguiContext(Window& window);
+        explicit ImguiContext(old_Window& window);
         ~ImguiContext();
 
         void Initialise();
@@ -16,6 +16,6 @@ namespace jade
         void Shutdown();
 
     private:
-        Window &m_window;
+        old_Window &m_window;
     };
 }

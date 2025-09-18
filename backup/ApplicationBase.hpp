@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Window.hpp"
+#include "old_Window.hpp"
 #include "GraphicsContext.hpp"
 #include "TimeStepper.hpp"
 #include "ImguiContext.hpp"
@@ -70,7 +70,7 @@ namespace jade {
 
     protected:
         WindowSettings m_data;
-        Window m_window;
+        old_Window m_window;
         GraphicsContext m_context;
         ImguiContext m_uiContext;
 

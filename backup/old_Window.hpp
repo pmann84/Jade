@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Events.hpp"
+#include "../src/common/events.hpp"
 
 #define GLFW_INCLUDE_NONE
 #include <GLFW/glfw3.h>
@@ -22,11 +22,11 @@ namespace jade
         uint32_t height;
     };
 
-    class Window
+    class old_Window
     {
     public:
-        explicit Window(const WindowSettings& settings);
-        ~Window();
+        explicit old_Window(const WindowSettings& settings);
+        ~old_Window();
 
         [[nodiscard]] bool shouldClose() const;
         [[nodiscard]] GLFWwindow* handle() const;

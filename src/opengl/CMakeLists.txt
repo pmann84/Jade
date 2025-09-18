@@ -1,10 +1,10 @@
 message(STATUS "Adding OPENGL window library.")
 add_subdirectory(window)
 
-if (JADE_BUNDLE_RENDERER)
-    message(STATUS "Adding OPENGL rendering library.")
-    add_subdirectory(renderer)
-endif()
+#if (JADE_BUNDLE_RENDERER)
+#    message(STATUS "Adding OPENGL rendering library.")
+#    add_subdirectory(renderer)
+#endif()
 
 
 
