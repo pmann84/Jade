@@ -16,15 +16,18 @@ namespace jade
     struct window_settings
     {
         std::string title;
-        uint32_t width;
-        uint32_t height;
+        uint32_t width = 1280;
+        uint32_t height = 720;
+        bool is_resizable = true;
+        bool fullscreen = false;
+        bool vsync = true;
     };
 
     template<typename WindowBaseT>
     class window
     {
     public:
-        explicit window(window_settings  settings) : m_settings(std::move(settings)), m_window(nullptr) {
+        explicit window(window_settings settings) : m_settings(std::move(settings)), m_window(nullptr) {
         };
         virtual ~window() = default;
 

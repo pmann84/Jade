@@ -2,14 +2,14 @@
 
 #include "window.hpp"
 
-#define GLFW_INCLUDE_NONE
+#define GLFW_INCLUDE_VULKAN
 #include <GLFW/glfw3.h>
 
 namespace jade {
-    class opengl_window final : public window<GLFWwindow> {
+    class vulkan_window final : public window<GLFWwindow> {
     public:
-        explicit opengl_window(window_settings settings);
-        ~opengl_window() override;
+        explicit vulkan_window(window_settings settings);
+        ~vulkan_window() override;
         [[nodiscard]] bool should_close() const override;
 
         [[maybe_unused]] glm::vec2 get_cursor_position() override;
@@ -23,6 +23,6 @@ namespace jade {
         void on(EventCallbackFnT<event::cursor_position_changed_event> callback) override;
 
     private:
-        static opengl_window& get_window(GLFWwindow* window);
+        static vulkan_window& get_window(GLFWwindow* window);
     };
 }

@@ -1,6 +1,8 @@
 #pragma once
 
 namespace jade::event {
+    struct event_base {};
+
     struct window_close_event {};
 
     struct window_resize_event {

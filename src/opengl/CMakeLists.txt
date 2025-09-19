@@ -1,5 +1,6 @@
-message(STATUS "Adding OPENGL window library.")
+message(STATUS "Adding OPENGL framework library.")
 add_subdirectory(window)
+add_subdirectory(application)
 
 #if (JADE_BUNDLE_RENDERER)
 #    message(STATUS "Adding OPENGL rendering library.")

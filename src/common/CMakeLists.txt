@@ -4,7 +4,7 @@ set(PROJECT_NAME jade_${PROJECT_ID})
 add_library(${PROJECT_NAME} INTERFACE)
 
 target_sources(${PROJECT_NAME}
-    INTERFACE events.hpp window.hpp
+    INTERFACE events.hpp window.hpp application.hpp
 )
 
 # Exports all the include directories needed for this library

@@ -7,7 +7,7 @@ include(./cmake/project_defaults.cmake)
 # Build Profiles
 
 # Configuration - possible options 'opengl', 'vulkan' & 'directx'
-set(JADE_BACKEND "vulkan")
+set(JADE_BACKEND "opengl")
 # Configure what components you want built with the library
 # choose from one or more of 'renderer', and 'ui', note that
 # the window component is always built since you can' really
@@ -19,6 +19,10 @@ option(JADE_BUILD_EXAMPLES "Build example programs" OFF)
 #option(JADE_BUILD_TESTS "Build test programs" OFF)
 
 # Other CMake Config
+string(TOLOWER ${JADE_BACKEND} JADE_BUILD_LOWER)
+if(JADE_BUILD_LOWER STREQUAL "vulkan")
+    set(AUTO_LOCATE_VULKAN ON CACHE BOOL "" FORCE)
+endif()
 include(./cmake/vulkan.cmake)
 include(./cmake/shaders.cmake)
 include(./cmake/imgui.cmake)

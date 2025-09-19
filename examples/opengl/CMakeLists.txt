@@ -1,5 +1,5 @@
 add_subdirectory(basic_window)
-#add_subdirectory(basic_app)
+add_subdirectory(basic_app)
 #if(JADE_BUNDLE_RENDERER)
 #    add_subdirectory(app_with_renderer)
 #endif()

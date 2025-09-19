@@ -3,4 +3,4 @@ set(PROJECT_NAME jade_opengl_examples_${PROJECT_ID})
 
 add_executable(${PROJECT_NAME} main.cpp)
 
-target_link_libraries(${PROJECT_NAME} PRIVATE jade_opengl_window)
+target_link_libraries(${PROJECT_NAME} PRIVATE jade_opengl_application jade_common)
