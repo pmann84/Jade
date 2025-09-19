@@ -66,7 +66,7 @@ public:
 int main()
 {
     jade::application_settings settings;
-    settings.name = "OpenGL Basic App";
+    settings.name = "Basic Vulkan App";
     settings.window_settings.width = 800;
     settings.window_settings.height = 600;
 

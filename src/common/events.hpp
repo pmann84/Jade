@@ -18,22 +18,22 @@ namespace jade::event {
         int mods;
     };
 
-    struct text_input_event {
+    struct text_input_event : event_base  {
         unsigned int keycode;
     };
 
-    struct mouse_event {
+    struct mouse_event : event_base  {
         int button;
         int action;
         int mods;
     };
 
-    struct scroll_event {
+    struct scroll_event : event_base  {
         double x_offset;
         double y_offset;
     };
 
-    struct cursor_position_changed_event {
+    struct cursor_position_changed_event : event_base  {
         double x_position;
         double y_position;
     };

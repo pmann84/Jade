@@ -35,6 +35,32 @@ namespace jade {
                     layer->on_event(event);
                 }
             });
+            m_window->on([this](event::window_close_event event) {
+                for (const auto& layer : m_layer_stack) {
+                    layer->on_event(event);
+                }
+            });
+            m_window->on([this](event::text_input_event event) {
+                for (const auto& layer : m_layer_stack) {
+                    layer->on_event(event);
+                }
+            });
+            m_window->on([this](event::mouse_event event) {
+                for (const auto& layer : m_layer_stack) {
+                    layer->on_event(event);
+                }
+            });
+            m_window->on([this](event::scroll_event event) {
+                for (const auto& layer : m_layer_stack) {
+                    layer->on_event(event);
+                }
+            });
+            m_window->on([this](event::cursor_position_changed_event event) {
+                for (const auto& layer : m_layer_stack) {
+                    layer->on_event(event);
+                }
+            });
+
         }
         virtual ~application() = default;
 
