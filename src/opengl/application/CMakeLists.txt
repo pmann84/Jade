@@ -17,6 +17,7 @@ target_link_libraries(${PROJECT_NAME}
         PRIVATE jade_common
         PRIVATE jade_opengl_window
         PRIVATE glfw
+        PRIVATE glad
 )
 #    PRIVATE glad
 #    PRIVATE glm
@@ -28,7 +29,8 @@ target_include_directories(${PROJECT_NAME}
         PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
         PUBLIC ${JADE_OPENGL_WINDOW_INCLUDE_DIRS}
         PUBLIC ${GLFW_INCLUDE_DIRS}
+        PUBLIC ${GLAD_INCLUDE_DIRS}
 )
-#    PUBLIC ${GLAD_INCLUDE_DIRS}
+#
 #    PUBLIC ${GLM_INCLUDE_DIRS}
 #    PUBLIC ${IMGUI_INCLUDE_DIRS})

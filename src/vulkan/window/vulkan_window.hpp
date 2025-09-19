@@ -14,6 +14,8 @@ namespace jade {
 
         [[maybe_unused]] glm::vec2 get_cursor_position() override;
 
+        void update() override;
+
         void on(EventCallbackFnT<event::window_resize_event> callback) override;
         void on(EventCallbackFnT<event::key_pressed_event> callback) override;
         void on(EventCallbackFnT<event::window_close_event> callback) override;

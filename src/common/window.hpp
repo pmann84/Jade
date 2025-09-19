@@ -36,6 +36,7 @@ namespace jade
             return m_window;
         }
         [[maybe_unused]] virtual glm::vec2 get_cursor_position() = 0;
+        virtual void update() = 0;
 
         virtual void on(EventCallbackFnT<event::window_resize_event> callback) = 0;
         virtual void on(EventCallbackFnT<event::key_pressed_event> callback) = 0;

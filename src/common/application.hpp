@@ -3,13 +3,11 @@
 #include "layer.hpp"
 #include "window.hpp"
 
-#include <cstdint>
 #include <memory>
 #include <string>
 #include <vector>
 #include <type_traits>
 
-#include "GLFW/glfw3.h"
 #include "glm/ext/scalar_common.hpp"
 
 
@@ -27,6 +25,16 @@ namespace jade {
         explicit application(application_settings settings)
             : m_settings(std::move(settings))
             , m_window(std::make_shared<WindowT>(settings.window_settings)) {
+            m_window->on([this](event::window_resize_event event){
+                for (const auto& layer : m_layer_stack) {
+                    layer->on_event(event);
+                }
+            });
+            m_window->on([this](event::key_pressed_event event) {
+                for (const auto& layer : m_layer_stack) {
+                    layer->on_event(event);
+                }
+            });
         }
         virtual ~application() = default;
 
@@ -64,6 +72,7 @@ namespace jade {
                     layer->on_render();
                 }
 
+                m_window->update();
             }
 
         }

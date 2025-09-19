@@ -5,8 +5,8 @@ add_library(${PROJECT_NAME})
 
 target_sources(${PROJECT_NAME}
         PRIVATE
-        vulkan_window.hpp
-        vulkan_window.cpp
+        vulkan_application.hpp
+        vulkan_application.cpp
         #        ./bindings/imgui_impl_glfw.cpp
         #        ./bindings/imgui_impl_opengl3.cpp
         #        ./bindings/imgui_impl_glfw.h
@@ -15,10 +15,10 @@ target_sources(${PROJECT_NAME}
 
 target_link_libraries(${PROJECT_NAME}
         PRIVATE jade_common
+        PRIVATE jade_vulkan_window
         PRIVATE glfw
-        PRIVATE ${VULKAN_LIB_LIST}
+        PRIVATE glad
 )
-
 #    PRIVATE glad
 #    PRIVATE glm
 #
@@ -27,10 +27,10 @@ target_link_libraries(${PROJECT_NAME}
 # Exports all the include directories needed for this library
 target_include_directories(${PROJECT_NAME}
         PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
+        PUBLIC ${JADE_VULKAN_WINDOW_INCLUDE_DIRS}
         PUBLIC ${GLFW_INCLUDE_DIRS}
+        PUBLIC ${GLAD_INCLUDE_DIRS}
 )
-
-set(JADE_VULKAN_WINDOW_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR} PARENT_SCOPE)
-#    PUBLIC ${GLAD_INCLUDE_DIRS}
+#
 #    PUBLIC ${GLM_INCLUDE_DIRS}
 #    PUBLIC ${IMGUI_INCLUDE_DIRS})

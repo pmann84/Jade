@@ -3,15 +3,15 @@
 namespace jade::event {
     struct event_base {};
 
-    struct window_close_event {};
+    struct window_close_event : event_base {};
 
-    struct window_resize_event {
+    struct window_resize_event : event_base {
         int width;
         int height;
     };
 
     // TODO: Consider adding a custom enum for keys and mouse codes rather than using the glfw ones
-    struct key_pressed_event {
+    struct key_pressed_event : event_base {
         int key;
         int scancode;
         int action;

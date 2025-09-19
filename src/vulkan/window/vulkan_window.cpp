@@ -53,13 +53,19 @@ namespace jade {
         return *static_cast<vulkan_window*>(glfwGetWindowUserPointer(window));
     }
 
+    void vulkan_window::update() {
+        glfwSwapBuffers(handle());
+    }
+
     void vulkan_window::on(EventCallbackFnT<event::window_resize_event> callback) {
         m_window_resize_callback = callback;
         glfwSetWindowSizeCallback(m_window, [](GLFWwindow* window, int width, int height){
             vulkan_window& win = get_window(window);
             win.m_settings.width = width;
             win.m_settings.height = height;
-            const event::window_resize_event event { width, height };
+            event::window_resize_event event{};
+            event.width = width;
+            event.height = height;
             win.m_window_resize_callback(event);
         });
     }
@@ -68,7 +74,11 @@ namespace jade {
         m_key_pressed_callback = callback;
         glfwSetKeyCallback(m_window, [](GLFWwindow* window, int key, int scancode, int action, int mods) {
             const vulkan_window& win = get_window(window);
-            const event::key_pressed_event event { key, scancode, action, mods };
+            event::key_pressed_event event{};
+            event.key = key;
+            event.scancode = scancode;
+            event.action = action;
+            event.mods = mods;
             win.m_key_pressed_callback(event);
         });
     }

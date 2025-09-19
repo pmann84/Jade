@@ -56,6 +56,10 @@ namespace jade {
         return {xPos, yPos};
     }
 
+    void opengl_window::update() {
+        glfwSwapBuffers(handle());
+    }
+
     opengl_window& opengl_window::get_window(GLFWwindow* window) {
         return *static_cast<opengl_window*>(glfwGetWindowUserPointer(window));
     }
@@ -66,7 +70,9 @@ namespace jade {
             opengl_window& win = get_window(window);
             win.m_settings.width = width;
             win.m_settings.height = height;
-            const event::window_resize_event event { width, height };
+            event::window_resize_event event{};
+            event.width = width;
+            event.height = height;
             win.m_window_resize_callback(event);
         });
     }
@@ -75,7 +81,11 @@ namespace jade {
         m_key_pressed_callback = callback;
         glfwSetKeyCallback(m_window, [](GLFWwindow* window, int key, int scancode, int action, int mods) {
             const opengl_window& win = get_window(window);
-            const event::key_pressed_event event { key, scancode, action, mods };
+            event::key_pressed_event event{};
+            event.key = key;
+            event.scancode = scancode;
+            event.action = action;
+            event.mods = mods;
             win.m_key_pressed_callback(event);
         });
     }
