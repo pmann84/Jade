@@ -11,6 +11,41 @@ jade::opengl_application::opengl_application(application_settings settings)
     {
         std::cout << "Failed to initialise GLAD!" << std::endl;
     }
+    m_window->on([this](event::window_resize_event event){
+        for (const auto& layer : m_layer_stack) {
+            layer->on(event);
+        }
+    });
+    m_window->on([this](event::key_pressed_event event) {
+        for (const auto& layer : m_layer_stack) {
+            layer->on(event);
+        }
+    });
+    m_window->on([this](event::window_close_event event) {
+        for (const auto& layer : m_layer_stack) {
+            layer->on(event);
+        }
+    });
+    m_window->on([this](event::text_input_event event) {
+        for (const auto& layer : m_layer_stack) {
+            layer->on(event);
+        }
+    });
+    m_window->on([this](event::mouse_event event) {
+        for (const auto& layer : m_layer_stack) {
+            layer->on(event);
+        }
+    });
+    m_window->on([this](event::scroll_event event) {
+        for (const auto& layer : m_layer_stack) {
+            layer->on(event);
+        }
+    });
+    m_window->on([this](event::cursor_position_changed_event event) {
+        for (const auto& layer : m_layer_stack) {
+            layer->on(event);
+        }
+    });
 }
 
 float jade::opengl_application::get_time()

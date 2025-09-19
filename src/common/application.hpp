@@ -2,6 +2,7 @@
 
 #include "layer.hpp"
 #include "window.hpp"
+#include "events.hpp"
 
 #include <memory>
 #include <string>
@@ -25,42 +26,11 @@ namespace jade {
         explicit application(application_settings settings)
             : m_settings(std::move(settings))
             , m_window(std::make_shared<WindowT>(settings.window_settings)) {
-            m_window->on([this](event::window_resize_event event){
-                for (const auto& layer : m_layer_stack) {
-                    layer->on_event(event);
-                }
-            });
-            m_window->on([this](event::key_pressed_event event) {
-                for (const auto& layer : m_layer_stack) {
-                    layer->on_event(event);
-                }
-            });
-            m_window->on([this](event::window_close_event event) {
-                for (const auto& layer : m_layer_stack) {
-                    layer->on_event(event);
-                }
-            });
-            m_window->on([this](event::text_input_event event) {
-                for (const auto& layer : m_layer_stack) {
-                    layer->on_event(event);
-                }
-            });
-            m_window->on([this](event::mouse_event event) {
-                for (const auto& layer : m_layer_stack) {
-                    layer->on_event(event);
-                }
-            });
-            m_window->on([this](event::scroll_event event) {
-                for (const auto& layer : m_layer_stack) {
-                    layer->on_event(event);
-                }
-            });
-            m_window->on([this](event::cursor_position_changed_event event) {
-                for (const auto& layer : m_layer_stack) {
-                    layer->on_event(event);
-                }
-            });
-
+            // m_window->on([this](auto event){
+            //     for (const auto& layer : m_layer_stack) {
+            //         layer->on(event);
+            //     }
+            // });
         }
         virtual ~application() = default;
 

@@ -57,7 +57,7 @@ namespace jade {
         glfwSwapBuffers(handle());
     }
 
-    void vulkan_window::on(EventCallbackFnT<event::window_resize_event> callback) {
+    void vulkan_window::on(event::EventCallbackFnT<event::window_resize_event> callback) {
         m_window_resize_callback = callback;
         glfwSetWindowSizeCallback(m_window, [](GLFWwindow* window, int width, int height){
             vulkan_window& win = get_window(window);
@@ -70,7 +70,7 @@ namespace jade {
         });
     }
 
-    void vulkan_window::on(EventCallbackFnT<event::key_pressed_event> callback) {
+    void vulkan_window::on(event::EventCallbackFnT<event::key_pressed_event> callback) {
         m_key_pressed_callback = callback;
         glfwSetKeyCallback(m_window, [](GLFWwindow* window, int key, int scancode, int action, int mods) {
             const vulkan_window& win = get_window(window);
@@ -83,7 +83,7 @@ namespace jade {
         });
     }
 
-    void vulkan_window::on(EventCallbackFnT<event::window_close_event> callback) {
+    void vulkan_window::on(event::EventCallbackFnT<event::window_close_event> callback) {
         m_window_close_callback = callback;//
         glfwSetWindowCloseCallback(m_window, [](GLFWwindow* window){
             const vulkan_window& win = get_window(window);
@@ -91,7 +91,7 @@ namespace jade {
         });
     }
 
-    void vulkan_window::on(EventCallbackFnT<event::text_input_event> callback) {
+    void vulkan_window::on(event::EventCallbackFnT<event::text_input_event> callback) {
         m_text_input_callback = callback;
         glfwSetCharCallback(m_window, [](GLFWwindow* window, unsigned int keycode)
         {
@@ -101,7 +101,7 @@ namespace jade {
         });
     }
 
-    void vulkan_window::on(EventCallbackFnT<event::mouse_event> callback) {
+    void vulkan_window::on(event::EventCallbackFnT<event::mouse_event> callback) {
         m_mouse_callback = callback;
         glfwSetMouseButtonCallback(m_window, [](GLFWwindow* window, int button, int action, int mods)
         {
@@ -111,7 +111,7 @@ namespace jade {
         });
     }
 
-    void vulkan_window::on(EventCallbackFnT<event::scroll_event> callback) {
+    void vulkan_window::on(event::EventCallbackFnT<event::scroll_event> callback) {
         m_scroll_callback = callback;
         glfwSetScrollCallback(m_window, [](GLFWwindow* window, double xOffset, double yOffset)
         {
@@ -121,7 +121,7 @@ namespace jade {
         });
     }
 
-    void vulkan_window::on(EventCallbackFnT<event::cursor_position_changed_event> callback) {
+    void vulkan_window::on(event::EventCallbackFnT<event::cursor_position_changed_event> callback) {
         m_cursor_changed_callback = callback;
         glfwSetCursorPosCallback(m_window, [](GLFWwindow* window, double xPos, double yPos)
         {

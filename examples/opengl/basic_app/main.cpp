@@ -52,8 +52,8 @@
 
 class BasicAppLayer : public jade::layer {
 public:
-    void on_event(jade::event::event_base& ev) override {
-        std::cout << "Event received in layer!" << std::endl;
+    void on(jade::event::window_resize_event event) override {
+        std::cout << "Window resized to " << event.width << "x" << event.height << std::endl;
     }
 
     void on_update(float ts) override {
