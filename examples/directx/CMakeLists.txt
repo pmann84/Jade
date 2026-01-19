@@ -1,1 +1,1 @@
-add_subdirectory(directx_sandbox)
+add_subdirectory(basic_window)

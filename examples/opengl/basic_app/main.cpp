@@ -1,57 +1,82 @@
-#include <memory>
-#include "ApplicationBase.hpp"
-#include <imgui.h>
+// #include <memory>
+// #include "../../../backup/ApplicationBase.hpp"
+// #include <imgui.h>
+//
+// #include <glad/glad.h>
+// #include <glm/gtc/type_ptr.hpp>
+// #include <sstream>
+
+// glm::vec4 DefaultColour = glm::vec4(0.3, 0.7, 0.4, 1.0);
+//
+// class BasicApp : public jade::ApplicationBase {
+// public:
+//     explicit BasicApp(jade::WindowSettings settings) : jade::ApplicationBase(settings) {}
+//
+//     void OnUpdate(float ts) override
+//     {
+//         glClearColor(DefaultColour.r, DefaultColour.g, DefaultColour.b, DefaultColour.a);
+//         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+//     }
+//
+//     void OnUiRender() override
+//     {
+//         ImGui::Begin("Hardware Info");
+//         ImGui::Text("Vendor: %s", m_context.info().vendor.c_str());
+//         ImGui::Text("Renderer: %s", m_context.info().renderer.c_str());
+//         ImGui::Text("Version: %s", m_context.info().version.c_str());
+//         ImGui::End();
+//     }
+//
+//     void OnWindowResize(const WindowResizeEvent& event) override {
+//         std::cout << "Window resize called: " << event.width << " x " << event.height << std::endl;
+//     }
+//
+//     void OnKeyPressed(const KeyPressedEvent& event) override {
+//         std::cout << "Key pressed..." << event.key << std::endl;
+//     }
+//
+//     std::string getInfo() {
+//         auto ctxInfo = m_context.info();
+//         std::stringstream ss;
+//         ss << "Vendor: " << ctxInfo.vendor << std::endl << "Renderer: " << ctxInfo.renderer << std::endl << "Version: " << ctxInfo.version << std::endl;
+//         return ss.str();
+//     }
+// };
+
+#include "application.hpp"
+#include "opengl_application.hpp"
 
 #include <glad/glad.h>
-#include <glm/gtc/type_ptr.hpp>
-#include <sstream>
 
-glm::vec4 DefaultColour = glm::vec4(0.3, 0.7, 0.4, 1.0);
+#include <iostream>
 
-class BasicApp : public gfxlib::ApplicationBase {
+class BasicAppLayer : public jade::layer {
 public:
-    explicit BasicApp(gfxlib::WindowSettings settings) : gfxlib::ApplicationBase(settings) {}
+    void on(jade::event::window_resize_event event) override {
+        std::cout << "Window resized to " << event.width << "x" << event.height << std::endl;
+    }
 
-    void OnUpdate(float ts) override
-    {
-        glClearColor(DefaultColour.r, DefaultColour.g, DefaultColour.b, DefaultColour.a);
+    void on_update(float ts) override {
+        // Update logic here
+    }
+
+    void on_render() override {
+        glClearColor(191.0/255.0, 247.0/255.0, 178.0/255.0, 0.0);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     }
 
-    void OnUiRender() override
-    {
-        ImGui::Begin("Hardware Info");
-        ImGui::Text("Vendor: %s", m_context.info().vendor.c_str());
-        ImGui::Text("Renderer: %s", m_context.info().renderer.c_str());
-        ImGui::Text("Version: %s", m_context.info().version.c_str());
-        ImGui::End();
-    }
-
-    void OnWindowResize(const WindowResizeEvent& event) override {
-        std::cout << "Window resize called: " << event.width << " x " << event.height << std::endl;
-    }
-
-    void OnKeyPressed(const KeyPressedEvent& event) override {
-        std::cout << "Key pressed..." << event.key << std::endl;
-    }
-
-    std::string getInfo() {
-        auto ctxInfo = m_context.info();
-        std::stringstream ss;
-        ss << "Vendor: " << ctxInfo.vendor << std::endl << "Renderer: " << ctxInfo.renderer << std::endl << "Version: " << ctxInfo.version << std::endl;
-        return ss.str();
-    }
 };
 
 int main()
 {
-    gfxlib::WindowSettings settings;
-    settings.width = 800;
-    settings.height = 600;
-    settings.title = "OpenGL Basic App";
+    jade::application_settings settings;
+    settings.name = "OpenGL Basic App";
+    settings.window_settings.width = 800;
+    settings.window_settings.height = 600;
 
-    auto myApp = std::make_unique<BasicApp>(settings);
-    myApp->start();
+    jade::opengl_application app(settings);
+    app.push_layer<BasicAppLayer>();
+    app.start();
 
     return 0;
 }

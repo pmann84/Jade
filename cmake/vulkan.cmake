@@ -14,7 +14,7 @@ if(AUTO_LOCATE_VULKAN)
     # Try extracting VulkanSDK path from ${Vulkan_INCLUDE_DIRS}
     if (NOT ${Vulkan_INCLUDE_DIRS} STREQUAL "")
         set(VULKAN_PATH ${Vulkan_INCLUDE_DIRS})
-        STRING(REGEX REPLACE "/Include" "" VULKAN_PATH ${VULKAN_PATH})
+        STRING(REGEX REPLACE "/include" "" VULKAN_PATH ${VULKAN_PATH})
     endif()
 
     if(NOT Vulkan_FOUND)
@@ -55,9 +55,10 @@ set(VULKAN_LIB_LIST "vulkan-1")
 if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
     # Include Vulkan header files from Vulkan SDK
     include_directories(AFTER ${VULKAN_PATH}/Include)
-
+    message(STATUS "Including directories: ${VULKAN_PATH}/Include")
     # Link directory for vulkan-1
     link_directories(${VULKAN_PATH}/Bin;${VULKAN_PATH}/Lib;)
+    message(STATUS "Linking directories: ${VULKAN_PATH}/Bin, ${VULKAN_PATH}/Lib")
 endif()
 
 set(GLSLC_PATH ${VULKAN_PATH}/Bin)

@@ -1,0 +1,2 @@
+add_subdirectory(basic_window)
+add_subdirectory(basic_app)

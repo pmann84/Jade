@@ -1,15 +1,16 @@
-message(STATUS "Adding OPENGL window library.")
+message(STATUS "Adding OPENGL framework library.")
 add_subdirectory(window)
+add_subdirectory(application)
 
-if (GFXLIB_BUNDLE_RENDERER)
-    message(STATUS "Adding OPENGL rendering library.")
-    add_subdirectory(renderer)
-endif()
+#if (JADE_BUNDLE_RENDERER)
+#    message(STATUS "Adding OPENGL rendering library.")
+#    add_subdirectory(renderer)
+#endif()
 
 
 
 #get_filename_component(PROJECT_ID ${CMAKE_CURRENT_SOURCE_DIR} NAME)
-#set(PROJECT_NAME gfxlib_${PROJECT_ID})
+#set(PROJECT_NAME JADE_${PROJECT_ID})
 #
 #add_library(${PROJECT_NAME})
 #

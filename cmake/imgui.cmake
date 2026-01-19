@@ -19,7 +19,7 @@ target_include_directories(imgui
     PUBLIC ${imgui_PATH}
     PUBLIC ${imgui_PATH}/backends/)
 
-if(GFXLIB_BACKEND STREQUAL "opengl")
+if(JADE_BACKEND STREQUAL "opengl")
     set(OPENGL_COPY_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src/opengl/window/bindings)
     message("Copying files to ${OPENGL_COPY_DIR}")
     configure_file(${CMAKE_CURRENT_SOURCE_DIR}/vendor/imgui/backends/imgui_impl_glfw.cpp ${OPENGL_COPY_DIR}/imgui_impl_glfw.cpp COPYONLY)
